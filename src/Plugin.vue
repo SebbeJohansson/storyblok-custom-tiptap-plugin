@@ -22,7 +22,7 @@ export default {
       return {
         plugin: 'tiptap-test', // Replace with the name of your plugin
         example: 'Hello World!',
-        content: '',
+        content: {},
       };
     },
   },

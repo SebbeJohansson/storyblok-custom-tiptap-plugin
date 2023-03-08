@@ -12,30 +12,28 @@ export default {
   components: {
     EditorContent,
   },
-  mixins: [window.Storyblok.plugin],
   data() {
     return {
       editor: null,
     };
   },
-  methods: {
-    // Fieldtype-wrapper complains if this doesnt exist.
-    // "Error in created hook: "TypeError: this.initWith is not a function""
-    initWith() {
-      return {};
+  props: {
+    // for custom v-model
+    value: {
+      type: undefined,
+      required: true,
     },
   },
   mounted() {
-    const editor = new Editor({
-      content: '<p>I’m running Tiptap with Vue.js. 🎉</p>',
+    this.editor = new Editor({
+      content: this.value,
       extensions: [
-      StarterKit,
+        StarterKit,
       ],
       onUpdate: () => {
         this.$emit('input', this.editor.getJSON());
       },
     });
-    this.editor = editor;
   },
   beforeDestroy() {
     this.editor.destroy()
