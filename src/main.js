@@ -1,4 +1,4 @@
-import { /* Editor,  */EditorContent } from '@tiptap/vue-2';
+import { /* Editor, */ EditorContent } from '@tiptap/vue-2';
 import CKEditor from '@ckeditor/ckeditor5-vue2';
 import Plugin from './Plugin.vue'
 

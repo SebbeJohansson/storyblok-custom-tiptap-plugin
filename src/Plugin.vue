@@ -1,40 +1,30 @@
 <template>
   <div>
-    <editor-content :editor="model.editor" />
+    <TipTapEditor v-model="model.content" />
   </div>
 </template>
 
 <script>
-import { Editor, EditorContent } from '@tiptap/vue-2';
-import StarterKit from '@tiptap/starter-kit'
+import TipTapEditor from './TipTapEditor.vue';
+
 export default {
   components: {
-    EditorContent,
+    TipTapEditor,
   },
   mixins: [window.Storyblok.plugin],
+  data() {
+    return {
+      editor: null,
+    };
+  },
   methods: {
     initWith() {
-      console.log('plugin:initWith 2');
       return {
-        plugin: 'tiptap-test',
+        plugin: 'tiptap-test', // Replace with the name of your plugin
         example: 'Hello World!',
+        content: '',
       };
     },
-    pluginCreated() {
-      // console.log("editor");
-      const editor = new Editor({
-        content: '<p>I’m running Tiptap with Vue.js. 🎉</p>',
-        extensions: [
-          StarterKit,
-        ],
-      });
-      this.model.editor = editor;
-      this.editor = editor;
-      console.log(editor);
-      // console.log(JSON.stringify(editor));
-      console.log('plugin:created');
-      // this.editor = JSON.stringify(editor);
-    }
   },
   watch: {
     'model': {
